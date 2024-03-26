@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Parking Zone Reservations</title>
+</head>
+
+<body>
+    <h1>My Parking Zone Reservations</h1>
+    <ul>
+        {% for reservation in reservations %}
+        <li>
+            Parking Zone: {{ reservation.parking_zone.name }}<br>
+            Start Time: {{ reservation.start_time }}<br>
+            Finish Time: {{ reservation.finish_time }}<br>
+            Total Price: {{ reservation.total_price }}<br>
+            Checked Out: {% if reservation.checked_out %}Yes{% else %}No{% endif %}<br>
+        </li>
+        {% empty %}
+        <li>No reservations found.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Parking Zones</title>
+</head>
+
+<body>
+    <h1>Parking Zones</h1>
+    <ul>
+        {% for parking_zone in parking_zones %}
+        <li>
+            <h2>{{ parking_zone.name }}</h2>
+            <p><strong>Location:</strong> {{ parking_zone.location }}</p>
+            <p><strong>Total Slots:</strong> {{ parking_zone.total_slots }}</p>
+            <p><strong>Vacant Slots:</strong> {{ parking_zone.vacant_slots }}</p>
+            <p><strong>Occupied Slots:</strong> {{ parking_zone.occupied_slots }}</p>
+            <p><strong>Price:</strong> {{ parking_zone.price }}</p>
+            <p><strong>Vehicle Type:</strong> {{ parking_zone.get_vehicle_type_display }}</p>
+            <p><a href="{%url 'create_reservation' parking_zone.id %}">Reserve</a></p>
+        </li>
+        {% empty %}
+        <li>No parking zones available.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

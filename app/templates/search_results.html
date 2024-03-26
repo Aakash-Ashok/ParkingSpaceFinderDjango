@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Parking Zone Search Results</title>
+</head>
+
+<body>
+    <h1>Parking Zone Search Results</h1>
+
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for zone in park_zones %}
+        <li>
+            Parking Zone: {{ zone.name }}<br>
+            Location: {{ zone.location.name }}<br>
+            Vehicle Type: {{ zone.get_vehicle_type_display }}<br>
+            Total Slots: {{ zone.total_slots }}<br>
+            Vacant Slots: {{ zone.vacant_slots }}<br>
+            Price: {{ zone.price }}<br>
+            <p><a href="{%url 'create_reservation' zone.id %}">Reserve</a></p>
+        </li>
+        {% empty %}
+        <li>No parking zones found.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

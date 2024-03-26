@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Reservations</title>
+</head>
+
+<body>
+    <h1>My Reservations</h1>
+    <ul>
+        {% for reservation in reservations %}
+        <li>
+            Ticket Code: {{ reservation.ticket_code }}<br>
+            Parking Zone: {{ reservation.parking_zone.name }}<br>
+            Start Time: {{ reservation.start_time }}<br>
+            Finish Time: {{ reservation.finish_time }}<br>
+            Total Price: {{ reservation.total_price }}<br>
+            Check Out : {% if reservation.checked_out %} Yes {% else %} No {% endif %}
+        </li>
+       
+            <form action="{%url 'checkout' reservation.id%}" method="post">
+                {% csrf_token %}
+                <button type="submit">Check Out</button>
+            </form>
+            <form action="{%url 'delete-reservation' reservation.id%}" method="post">
+                {% csrf_token %}
+                <button type="submit">delete</button>
+            </form>
+        {% empty %}
+        <li>No reservations found.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My ParkZones</title>
+</head>
+
+<body>
+    <h1>My ParkZones</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Total Slots</th>
+            <th>Vacant Slots</th>
+            <th>Occupied Slots</th>
+            <th>Price</th>
+            <th>Location</th>
+            <th>Vehicle Type</th>
+        </tr>
+        {% for parkzone in parkzones %}
+        <tr>
+            <td>{{ parkzone.name }}</td>
+            <td>{{ parkzone.total_slots }}</td>
+            <td>{{ parkzone.vacant_slots }}</td>
+            <td>{{ parkzone.occupied_slots }}</td>
+            <td>{{ parkzone.price }}</td>
+            <td>{{ parkzone.location }}</td>
+            <td>{{ parkzone.get_vehicle_type_display }}</td>
+            <td><a href="{%url 'update_parkzone' parkzone.id%}">Update</a></td>
+            <td><a href="{%url 'admin-reservation-list' parkzone.id%}">View Reservation</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9">No ParkZones created yet.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
